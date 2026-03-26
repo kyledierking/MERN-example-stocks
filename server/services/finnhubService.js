@@ -51,7 +51,4 @@ const getCompanyProfile = async (symbol) => {
     }
 };
 
-export {
-    getStockQuote,
-    getCompanyProfile,
-};
+export { getStockQuote, getCompanyProfile };

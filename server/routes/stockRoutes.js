@@ -1,7 +1,7 @@
-const express = require('express');
-const Stock = require('../models/Stock');
-const authMiddleware = require('../middleware/authMiddleware');
-const finnhubService = require('../services/finnhubService');
+import express from 'express';
+import Stock from '../models/Stock.js';
+import authMiddleware from '../middleware/authMiddleware.js';
+import { getStockQuote, getCompanyProfile } from '../services/finnhubService.js';
 
 const router = express.Router();
 
@@ -17,7 +17,7 @@ router.get('/:symbol', authMiddleware, async (req, res) => {
         let companyProfile = null;
 
         try {
-          companyProfile = await finnhubService.getCompanyProfile(symbol.toUpperCase());
+          companyProfile = await getCompanyProfile(symbol.toUpperCase());
           if (!companyProfile || !companyProfile.name) {
             return res.status(404).json({ message: 'Stock not found' });
           }
@@ -37,7 +37,7 @@ router.get('/:symbol', authMiddleware, async (req, res) => {
       let quote = null;
 
       try {
-        quote = await finnhubService.getStockQuote(symbol.toUpperCase());
+        quote = await getStockQuote(symbol.toUpperCase());
         if (!quote || quote.o === undefined) {
           return res.status(404).json({ message: 'Stock quote not found' });
         }
@@ -68,4 +68,4 @@ router.get('/', authMiddleware, async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;
