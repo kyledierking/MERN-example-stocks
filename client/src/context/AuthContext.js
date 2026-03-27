@@ -7,14 +7,12 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(localStorage.getItem('token') || null);
   const [loading, setLoading] = useState(true);
-  const API = axios.create({
-    baseURL: process.env.REACT_APP_API_URL || 'http://localhost:5001/api',
-  });
+  const API = axios.create();
 
   useEffect(() => {
     const verifyToken = async () => {
       try {
-        const response = await API.get('auth/me', {
+        const response = await API.get('/api/auth/me', {
           headers: { Authorization: `Bearer ${token}` },
         });
         setUser(response.data.user);
@@ -37,7 +35,7 @@ export const AuthProvider = ({ children }) => {
 
   const signup = async (email, password, name) => {
     try {
-      const response = await API.post('auth/signup', {
+      const response = await API.post('/api/auth/signup', {
         email,
         password,
         name,
@@ -53,7 +51,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (email, password) => {
     try {
-      const response = await API.post('auth/login', {
+      const response = await API.post('/api/auth/login', {
         email,
         password,
       });

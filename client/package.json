@@ -2,6 +2,7 @@
   "name": "mern-stock-client",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:5001",
   "dependencies": {
     "axios": "^1.4.0",
     "bootstrap": "^5.3.8",
