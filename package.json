@@ -10,10 +10,14 @@
     "start": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
     "heroku-postbuild": "cd server && npm install && cd ../client && npm install && npm run build"
   },
-  "keywords": ["MERN", "stock", "authentication"],
+  "keywords": [
+    "MERN",
+    "stock",
+    "authentication"
+  ],
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "concurrently": "^7.6.0"
+  "dependencies": {
+    "concurrently": "^9.2.1"
   }
 }
