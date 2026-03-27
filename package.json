@@ -6,8 +6,9 @@
   "scripts": {
     "dev:server": "cd server && npm run dev",
     "dev:client": "cd client && npm start",
-    "install": "npm install && cd server && npm install && cd ../client && npm install",
-    "start": "concurrently \"npm run dev:server\" \"npm run dev:client\""
+    "install:all": "npm install && cd server && npm install && cd ../client && npm install",
+    "start": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
+    "heroku-postbuild": "cd server && npm install && cd ../client && npm install && npm run build"
   },
   "keywords": ["MERN", "stock", "authentication"],
   "author": "",
