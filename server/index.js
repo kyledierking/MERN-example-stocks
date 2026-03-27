@@ -4,7 +4,12 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import authRoutes from './routes/authRoutes.js';
 import stockRoutes from './routes/stockRoutes.js';
-import path from 'path';
+import { fileURLToPath } from 'url';
+import path, { dirname } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
 
 const createApp = () => {
   const app = express();
@@ -41,7 +46,7 @@ const PORT = process.env.PORT || 5000;
 if(process.env.NODE_ENV === 'production'){
     app.use(express.static('client/build'));
     app.get("*", (req, res) => {
-        res.sendFile(path.resolve(path.dirname(), 'client', 'build', 'index.html'));
+        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
     });
 }
 
